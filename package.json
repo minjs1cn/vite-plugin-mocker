@@ -1,8 +1,14 @@
 {
   "name": "vite-plugin-mocker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "lib/index.js",
   "license": "MIT",
+  "keywords": [
+    "vite",
+    "vite-plugin",
+    "mock",
+    "typescript"
+  ],
   "scripts": {
     "dev": "npx tsc --watch",
     "build": "npx tsc"

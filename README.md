@@ -41,9 +41,6 @@ export default defineConfig({
 
 ```js
 const mocker = function(req) {
-  // req.path 请求路径
-  // req.query get 请求参数
-  // req.body post 请求参数
   return {
     code: 0,
     success: true,
@@ -51,7 +48,7 @@ const mocker = function(req) {
   }
 }
 
-// 请求类型， 默认为 'GET|POST'
+// 请求类型， 默认为 'GET'
 mocker.methods = 'GET'
 
 module.export = mocker
@@ -62,8 +59,8 @@ module.export = mocker
 
 ```json
 {
-  code: 0,
-  success: true,
-  data: 'success'
+  "code": 0,
+  "success": true,
+  "data": "success"
 }
 ```
