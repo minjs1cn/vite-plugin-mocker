@@ -64,3 +64,27 @@ module.export = mocker
   "data": "success"
 }
 ```
+
+## 高级用法
+
+```js
+const mocker = function(req) {
+  if (req.method === 'POST') {
+    return {
+      code: 0,
+      success: true,
+      data: req.body // post请求参数
+    }
+  }
+
+  if (req.method === 'GET') {
+    return {
+      code: 0,
+      success: true,
+      data: req.query // get请求参数
+    }
+  }
+}
+
+module.export = mocker
+```

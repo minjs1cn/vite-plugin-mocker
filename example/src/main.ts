@@ -4,7 +4,9 @@ axios.defaults.baseURL = '/api'
 
 axios.interceptors.response.use(response => response.data)
 
-axios.get('/a').then(res => {
+axios.post('/a', {
+  c: 'zm'
+}).then(res => {
   console.log('a: ', res)
 })
 

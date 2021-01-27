@@ -1,42 +1,6 @@
 import config, { MockConfig } from './config'
-import fs from 'fs'
+import { findPath, parse, bodyParse } from './utils'
 import { Plugin } from 'vite'
-
-function findPath(dir: string) {
-  let url = dir + '.js'
-  if(fs.existsSync(url)) {
-    return {
-      url,
-      type: 'js'
-    }
-  }
-
-  url = dir + '.json'
-  if(fs.existsSync(url)) {
-    return {
-      url,
-      type: 'json'
-    }
-  }
-
-  url = dir + '/index.js'
-  if(fs.existsSync(url)) {
-    return {
-      url,
-      type: 'js'
-    }
-  }
-
-  url = dir + '/index.json'
-  if(fs.existsSync(url)) {
-    return {
-      url,
-      type: 'json'
-    }
-  }
-
-  return undefined
-}
 
 function MockPlugin(opts: MockConfig = {}): Plugin {
   const options = {
@@ -57,9 +21,23 @@ function MockPlugin(opts: MockConfig = {}): Plugin {
           const method = req.method?.toLowerCase()
           // 符合mock路由
           if (match) {
-            const mockpath = match[1]
+            if (method === 'post') {
+              const body = await bodyParse(req)
+              // @ts-ignore
+              req.body = body
+            }
+            
+            const [mockpath, query = ''] = match[1].split('?')
+            // 挂载path、query参数
+            // @ts-ignore
+            req.path = mockpath
+            // @ts-ignore
+            req.query = parse(query)
+           
+            // 真实mock文件地址
             const mock = findPath(dir + mockpath)
             if (mock) {
+              // 删除缓存
               delete require.cache[mock.url]
 
               let data, methods = [], mocker
