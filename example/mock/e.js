@@ -1,9 +1,9 @@
-module.exports = function() {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve({
-        code: 0
-      })
-    }, 3000)
-  })
+function mocker () {
+  return {
+    code: 0
+  }
 }
+
+mocker.delay = 3000
+
+module.exports = mocker

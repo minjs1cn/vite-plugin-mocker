@@ -70,3 +70,22 @@ export function bodyParse(req: Connect.IncomingMessage) {
     })
   })
 }
+
+/**
+ * 随机生成最大最小之间的值
+ * @param min - 最小值
+ * @param max - 最大值
+ */
+export function getRandom(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min)) + min
+}
+
+/**
+ * 延迟时间
+ * @param time - 延迟时间
+ */
+export function delay(time: number) {
+  return new Promise(resolve => {
+    setTimeout(resolve, time)
+  })
+}

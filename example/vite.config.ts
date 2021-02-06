@@ -3,6 +3,8 @@ import viteMocker from '../src/index'
 
 export default defineConfig({
   plugins: [
-    viteMocker()
+    viteMocker({
+      delay: [0, 10000]
+    })
   ]
 })

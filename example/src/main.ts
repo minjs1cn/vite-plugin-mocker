@@ -10,7 +10,7 @@ axios.post('/a', {
   console.log('a: ', res)
 })
 
-axios.get('/b').then(res => {
+axios.get('/b?a=1').then(res => {
   console.log('b: ', res)
 })
 
