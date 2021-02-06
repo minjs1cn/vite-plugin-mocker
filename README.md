@@ -19,8 +19,12 @@ import viteMocker from 'vite-plugin-mocker'
 export default defineConfig({
   plugins: [
     viteMocker({
+      // mock文件目录地址
       dir: '/mocks',
-      pattern: '/api'
+      // mock请求统一开头
+      pattern: '/api',
+      // 返回延迟随机区间
+      delay: [0, 200]
     })
   ]
 })
@@ -32,6 +36,7 @@ export default defineConfig({
 {
   dir?: string;
   pattern?: string;
+  delay?: [number, number];
 }
 ```
 
@@ -50,6 +55,8 @@ const mocker = function(req) {
 
 // 请求类型， 默认为 'GET'
 mocker.methods = 'GET'
+// 请求响应延迟时间，单位ms
+mocker.delay = 3000
 
 module.export = mocker
 ```
@@ -85,6 +92,8 @@ const mocker = function(req) {
     }
   }
 }
+
+mocker.methods = 'GET|POST'
 
 module.export = mocker
 ```
