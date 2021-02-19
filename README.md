@@ -19,11 +19,11 @@ import viteMocker from 'vite-plugin-mocker'
 export default defineConfig({
   plugins: [
     viteMocker({
-      // mock文件目录地址
+      // mock文件根目录
       dir: '/mocks',
-      // mock请求统一开头
+      // mock请求路由匹配
       pattern: '/api',
-      // 返回延迟随机区间
+      // 请求响应延迟时间区间
       delay: [0, 200]
     })
   ]
@@ -72,7 +72,7 @@ module.export = mocker
 }
 ```
 
-## 高级用法
+## Request params
 
 ```js
 const mocker = function(req) {
@@ -96,4 +96,21 @@ const mocker = function(req) {
 mocker.methods = 'GET|POST'
 
 module.export = mocker
+```
+
+## Use in vue-cli
+
+**vue.config.js**
+
+```ts
+const { useMiddleWare } = require('vite-plugin-mocker')
+
+module.exports = {
+  devServer: {
+    before (app) {
+      // 使用mock中间件
+      app.use(useMiddleWare())
+    }
+  },
+}
 ```
