@@ -66,7 +66,13 @@ export function bodyParse(req: Connect.IncomingMessage) {
       data += chunk
     })
     req.on('end', () => {
-      resolve(JSON.parse(data))
+      let response
+      try {
+        response = JSON.parse(data)
+      } catch (error) {
+        response = parse(data)
+      }
+      resolve(response)
     })
   })
 }

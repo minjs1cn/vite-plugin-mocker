@@ -1,10 +1,13 @@
 {
   "name": "vite-plugin-mocker",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "lib/index.js",
   "license": "MIT",
   "repository": {
     "url": "https://github.com/minjs1cn/vite-plugin-mocker"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "author": {
     "name": "minjs1cn",
