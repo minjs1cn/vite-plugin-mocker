@@ -71,6 +71,7 @@ export default function useMiddleWare(opts: MockConfig = {}): Connect.NextHandle
   
           if (methods.includes(method)) {
             await delay(delayTime)
+            res.setHeader('Content-Type', 'application/json;charset=utf-8')
             res.end(JSON.stringify(data))
           } else {
             res.end(JSON.stringify('request method is invalid'))
